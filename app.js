@@ -14,9 +14,9 @@ app.get("/compile_and_get_metadata", (req,res)=>{
 	code = code.replace("\"", "\\\"");
 
 	var to_compile ='{"language":"Solidity","sources":{"sol.sol":{"content":"'+code+'"}},"settings":{"outputSelection":{"*":{"*":["*"]}}}}';
-	var output = JSON.parse(solc.compile(to_compile));
-	res.send(JSON.stringify(output.contracts['sol.sol']));
-	//res.send(to_compile);
+	//var output = JSON.parse(solc.compile(to_compile));
+	//res.send(JSON.stringify(output.contracts['sol.sol']));
+	res.send(to_compile);
 	
 });
 
