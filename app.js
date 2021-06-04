@@ -24,15 +24,16 @@ app.use("/", (req,res)=>{
 	
 	
 	
+	
 	var to_compile_start ='{"language":"Solidity","sources":{"sol.sol":{"content":"';
 	var to_compile_end = '"}},"settings":{"outputSelection":{"*":{"*":["*"]}}}}';
 	var to_compile=to_compile_start+code+to_compile_end;
-	
-	var output = JSON.parse(solc.compile(to_compile));
-	res.send(JSON.stringify(output.contracts));
+	res.send(to_compile);
+	//var output = JSON.parse(solc.compile(to_compile));
+	//res.send(JSON.stringify(output.contracts['sol.sol']));
 });
 
-app.use("/compile_and_get_metadata", (req,res)=>{
+/*app.use("/compile_and_get_metadata", (req,res)=>{
 	var code = req.body.toString();
 	code = code.replaceAll("\\","\\\\");
 	code = code.replaceAll("\"","\\\"");
@@ -49,7 +50,7 @@ app.use("/compile_and_get_metadata", (req,res)=>{
 	
 	
 	
-});
+});*/
 
 
 
