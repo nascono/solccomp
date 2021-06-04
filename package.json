@@ -1,11 +1,16 @@
 {
   "name": "solccomp",
+  "version":"1.0.0",
+  "description":"sadfg",
   "main": "app.js",
   "scripts": {
 	"test": "echo \"err\" && exit 1",
     "start": "node app.js"
   },
+  "author":"",
+  "license":"ISC",
   "dependencies": {
     "express": "^4.17.1"
-  }
+  },
+  "engines":{"node":"12.14.1"}
 }
