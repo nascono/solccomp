@@ -21,6 +21,7 @@ app.use("/", (req,res)=>{
 	var code = req.body.toString();
 	code = code.split("\r\n").join("");
 	code = code.split("\t").join("");
+	
 	var input = {
 	language: 'Solidity',
 	  sources: {
@@ -38,12 +39,14 @@ app.use("/", (req,res)=>{
 	};
 	input.sources['sol.sol'].content = code;
 	res.send(JSON.stringify(input));
-	
+	var output = JSON.parse(solc.compile(JSON.stringify(input)));
+	res.send(JSON.stringify(output.contracts));
 	
 //	var to_compile_start ='{"language":"Solidity","sources":{"sol.sol":{"content":"';
 //	var to_compile_end = '"}},"settings":{"outputSelection":{"*":{"*":["*"]}}}}';
 //	var to_compile=to_compile_start+code+to_compile_end;
 //	res.send(to_compile);
+
 	//var output = JSON.parse(solc.compile(to_compile));
 	//res.send(JSON.stringify(output.contracts['sol.sol']));
 });
