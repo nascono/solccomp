@@ -1,13 +1,17 @@
 var express = require("express");
 var solc = require('solc');
 var app = express();
+var bodyParser = require('body-parser');
 let port = process.env.PORT || 3000
 
-app.get("/", (req,res)=>{
+app.use(bodyPaser.json);
+app.use(bodyParser.urlencoded({ extended: false})); 
+
+app.use("/", (req,res)=>{
 	res.send("Created by Ömer Fatih AĞIN</br> Sikke Company®™ All rights reserved");
 });
 
-app.get("/compile_and_get_metadata", (req,res)=>{
+app.use("/compile_and_get_metadata", (req,res)=>{
 	//var base_64_code = req.query.code;
 	//var base_64_buffer = Buffer.from(base_64_code, 'base64');
 	//var code = base_64_buffer.toString('ascii');
@@ -19,7 +23,7 @@ app.get("/compile_and_get_metadata", (req,res)=>{
 	
 	//var output = JSON.parse(solc.compile(to_compile));
 	//res.send(JSON.stringify(output.contracts['sol.sol']));
-	res.send(code);
+	res.send(req.body);
 	
 });
 
