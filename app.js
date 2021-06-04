@@ -9,7 +9,7 @@ app.get("/", (req,res)=>{
 
 app.get("/compile_and_get_metadata", (req,res)=>{
 	var code = req.query.code;
-	var to_compile ='{"language":"Solidity","sources":{"sol.sol":{"content":"'.code.'"}},"settings":{"outputSelection":{"*":{"*":["*"]}}}}';
+	var to_compile ='{"language":"Solidity","sources":{"sol.sol":{"content":"'+code+'"}},"settings":{"outputSelection":{"*":{"*":["*"]}}}}';
 	var output = JSON.parse(solc.compile(to_compile));
 	res.send(output.contracts['sol.sol']);
 });
