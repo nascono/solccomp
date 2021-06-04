@@ -10,7 +10,7 @@ app.get("/", (req,res)=>{
 app.get("/compile_and_get_metadata", (req,res)=>{
 	var base_64_code = req.query.code;
 	var base_64_buffer = Buffer.from(base_64_code, 'base64');
-	var code = buff.toString('utf8');
+	var code = base_64_buffer.toString('utf8');
 	//var to_compile ='{"language":"Solidity","sources":{"sol.sol":{"content":"'+code+'"}},"settings":{"outputSelection":{"*":{"*":["*"]}}}}';
 	//var output = JSON.parse(solc.compile(to_compile));
 	//res.send(output.contracts['sol.sol']);
