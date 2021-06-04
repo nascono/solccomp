@@ -7,16 +7,17 @@ var app = express();
 var getRawBody = require('raw-body')
 let port = process.env.PORT || 3000
 
+var options = {
+  inflate: true,
+  limit: '100kb',
+  type: '*/*'
+};
+app.use(bodyParser.raw(options));
 
-app.use(bodyParser.json({
-  verify: (req, res, buf) => {
-    req.rawBody = buf
-  }
-}))
 
 app.use("/", (req,res)=>{
 	res.send("Created by Ömer Fatih AĞIN</br> Sikke Company®™ All rights reserved");
-	console.log(req.rawBody);
+	console.log(req.body);
 });
 
 app.use("/compile_and_get_metadata", (req,res)=>{
