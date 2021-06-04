@@ -14,6 +14,10 @@ var options = {
 };
 app.use(bodyParser.raw(options));
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
 
 app.use("/", (req,res)=>{
 	//res.send("Created by Ömer Fatih AĞIN</br> Sikke Company®™ All rights reserved");
