@@ -21,17 +21,17 @@ app.use("/", (req,res)=>{
 });
 
 app.use("/compile_and_get_metadata", (req,res)=>{
-	//var base_64_code = req.query.code;
-	//var base_64_buffer = Buffer.from(base_64_code, 'base64');
-	//var code = base_64_buffer.toString('ascii');
-	//code = code.replace("\"", "\\\"");
-	//var code = req.body;
+	var code = req.body.toString();
+	code = code.replaceAll("\\","\\\\");
+	code = code.replaceAll("\"","\\\"");
 	
-	var to_compile_first ='{"language":"Solidity","sources":{"sol.sol":{"content":"';
-	var to_compile_last = '"}},"settings":{"outputSelection":{"*":{"*":["*"]}}}}';
 	
-	//var output = JSON.parse(solc.compile(to_compile));
-	//res.send(JSON.stringify(output.contracts['sol.sol']));
+	var to_compile_start ='{"language":"Solidity","sources":{"sol.sol":{"content":"';
+	var to_compile_end = '"}},"settings":{"outputSelection":{"*":{"*":["*"]}}}}';
+	var to_compile=to_compile_start+code+to_compile_end;
+	
+	var output = JSON.parse(solc.compile(to_compile));
+	res.send(JSON.stringify(output.contracts['sol.sol']));
 	//res.send(req.body);
 	
 	
