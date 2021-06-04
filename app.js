@@ -39,7 +39,17 @@ app.use("/", (req,res)=>{
 	};
 	input.sources['sol.sol'].content = code;
 	var output = JSON.parse(solc.compile(JSON.stringify(input)));
-	res.send(JSON.stringify(output));
+	var end = output.contracts['sol.sol'];
+	////
+	delete end["SafeMath"];
+	var keys = [];
+	for(var k in end){keys.push(k); break;};
+	end = end[keys[0]];
+	////
+	var abi = end["abi"];
+	var bytecode = end["evm"]["bytecode"]["object"];
+	var to_send =[abi,bytecode];
+	res.send(to_send);
 	
 //	var to_compile_start ='{"language":"Solidity","sources":{"sol.sol":{"content":"';
 //	var to_compile_end = '"}},"settings":{"outputSelection":{"*":{"*":["*"]}}}}';
