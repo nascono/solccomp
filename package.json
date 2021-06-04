@@ -1,8 +1,11 @@
 {
-"name":"solccomp",
-"main":"app.js",
-"scripts": {
-  "start": "node app.js"
-}
-
+  "name": "solccomp",
+  "main": "app.js",
+  "scripts": {
+	"test": "echo \"err\" && exit 1"
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
