@@ -1,4 +1,5 @@
 var express = require("express");
+var solc = require('solc');
 var app = express();
 let port = process.env.PORT || 3000
 
@@ -8,7 +9,23 @@ app.get("/", (req,res)=>{
 
 app.get("/compile_and_get_metadata", (req,res)=>{
 	var code = req.query.code;
-	res.send(code);
+	var input = {
+  language: 'Solidity',
+  sources: {
+    'test.sol': {
+      content: 'contract C { function f() public { } }'
+    }
+  },
+  settings: {
+    outputSelection: {
+      '*': {
+        '*': ['*']
+      }
+    }
+  }
+};
+	
+	res.send(JSON.stringify(input));
 });
 
 
