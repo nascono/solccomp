@@ -19,16 +19,29 @@ app.use("/", (req,res)=>{
 	//res.send("Created by Ömer Fatih AĞIN</br> Sikke Company®™ All rights reserved");
 	//console.log(req.body.toString());
 	var code = req.body.toString();
-	code = code.split("\\").join("\\\\");
-	code = code.split("\"").join("\\\"");
+	var input = {
+	language: 'Solidity',
+	  sources: {
+		'sol.sol': {
+		  content: 'contract C { function f() public { } }'
+		}
+	  },
+	  settings: {
+		outputSelection: {
+		  '*': {
+			'*': ['*']
+		  }
+		}
+	  }
+	};
+	input.sources['sol.sol'].content = code;
+	res.send(JSON.stringify(input));
 	
 	
-	
-	
-	var to_compile_start ='{"language":"Solidity","sources":{"sol.sol":{"content":"';
-	var to_compile_end = '"}},"settings":{"outputSelection":{"*":{"*":["*"]}}}}';
-	var to_compile=to_compile_start+code+to_compile_end;
-	res.send(to_compile);
+//	var to_compile_start ='{"language":"Solidity","sources":{"sol.sol":{"content":"';
+//	var to_compile_end = '"}},"settings":{"outputSelection":{"*":{"*":["*"]}}}}';
+//	var to_compile=to_compile_start+code+to_compile_end;
+//	res.send(to_compile);
 	//var output = JSON.parse(solc.compile(to_compile));
 	//res.send(JSON.stringify(output.contracts['sol.sol']));
 });
