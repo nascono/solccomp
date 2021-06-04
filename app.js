@@ -1,25 +1,22 @@
 var express = require("express");
 var solc = require('solc');
+var bodyParser  = require("body-parser");
+
+
 var app = express();
 var getRawBody = require('raw-body')
 let port = process.env.PORT || 3000
 
 
-app.use(function (req, res, next) {
-  getRawBody(req, {
-    length: req.headers['content-length'],
-    limit: '100mb',
-    encoding: contentType.parse(req).parameters.charset
-  }, function (err, string) {
-    if (err) return next(err)
-    req.text = string
-    next()
-  })
-})
+app.use(bodyParser.json({
+  verify: (req, res, buf) => {
+    req.rawBody = buf
+  }
+}))
 
 app.use("/", (req,res)=>{
 	res.send("Created by Ömer Fatih AĞIN</br> Sikke Company®™ All rights reserved");
-	console.log(req.text);
+	console.log(req.rawBody);
 });
 
 app.use("/compile_and_get_metadata", (req,res)=>{
