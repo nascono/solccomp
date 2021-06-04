@@ -17,7 +17,7 @@ app.use(bodyParser.raw(options));
 
 app.use("/", (req,res)=>{
 	res.send("Created by Ömer Fatih AĞIN</br> Sikke Company®™ All rights reserved");
-	console.log(req.body);
+	console.log(req.body.toString());
 });
 
 app.use("/compile_and_get_metadata", (req,res)=>{
