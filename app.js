@@ -19,8 +19,9 @@ app.use("/", (req,res)=>{
 	//res.send("Created by Ömer Fatih AĞIN</br> Sikke Company®™ All rights reserved");
 	//console.log(req.body.toString());
 	var code = req.body.toString();
-	code = code.replaceAll("\\","\\\\");
-	code = code.replaceAll("\"","\\\"");
+	code = code.split("\\").join("\\\\");
+	code = code.split("\"").join("\\\"");
+	
 	
 	
 	var to_compile_start ='{"language":"Solidity","sources":{"sol.sol":{"content":"';
