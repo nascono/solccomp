@@ -38,7 +38,6 @@ app.use("/", (req,res)=>{
 	  }
 	};
 	input.sources['sol.sol'].content = code;
-	res.send(JSON.stringify(input));
 	var output = JSON.parse(solc.compile(JSON.stringify(input)));
 	res.send(JSON.stringify(output.contracts));
 	
