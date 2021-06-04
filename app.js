@@ -29,7 +29,7 @@ app.use("/", (req,res)=>{
 	var to_compile=to_compile_start+code+to_compile_end;
 	
 	var output = JSON.parse(solc.compile(to_compile));
-	res.send(JSON.stringify(output.contracts['sol.sol']));
+	res.send(JSON.stringify(output.contracts));
 });
 
 app.use("/compile_and_get_metadata", (req,res)=>{
