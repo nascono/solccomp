@@ -2,7 +2,7 @@
   "name": "solccomp",
   "main": "app.js",
   "scripts": {
-	"test": "echo \"err\" && exit 1"
+	"test": "echo \"err\" && exit 1",
     "start": "node app.js"
   },
   "dependencies": {
