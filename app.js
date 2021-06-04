@@ -39,7 +39,7 @@ app.use("/", (req,res)=>{
 	};
 	input.sources['sol.sol'].content = code;
 	var output = JSON.parse(solc.compile(JSON.stringify(input)));
-	res.send(JSON.stringify(output.contracts));
+	res.send(JSON.stringify(output));
 	
 //	var to_compile_start ='{"language":"Solidity","sources":{"sol.sol":{"content":"';
 //	var to_compile_end = '"}},"settings":{"outputSelection":{"*":{"*":["*"]}}}}';
