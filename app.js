@@ -11,7 +11,7 @@ app.get("/compile_and_get_metadata", (req,res)=>{
 	var base_64_code = req.query.code;
 	var base_64_buffer = Buffer.from(base_64_code, 'base64');
 	var code = base_64_buffer.toString('ascii');
-	code = code.replace("\"", "\\\"");
+	//code = code.replace("\"", "\\\"");
 
 	var to_compile_first ='{"language":"Solidity","sources":{"sol.sol":{"content":"';
 	var to_compile_last = '"}},"settings":{"outputSelection":{"*":{"*":["*"]}}}}';
