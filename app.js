@@ -20,7 +20,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/", (req,res)=>{
-	console.log(req.body.toString();
+	console.log(req.body.toString());
 	if(req.body.toString()=="")
 	{
 		res.send("Created by Ömer Fatih AĞIN</br> Sikke Company®™ All rights reserved</br>Free solidty compiler api</br>Just send code in raw_body</br>Solidity Version:0.8.4+commit.c7e474f2.Emscripten.clang");
