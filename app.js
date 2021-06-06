@@ -20,8 +20,13 @@ app.use((req, res, next) => {
 });
 
 app.use("/", (req,res)=>{
-	//res.send("Created by Ömer Fatih AĞIN</br> Sikke Company®™ All rights reserved");
-	//console.log(req.body.toString());
+	
+	if(req.body.toString()="")
+	{
+		res.send("Created by Ömer Fatih AĞIN</br> Sikke Company®™ All rights reserved</br>Free solidty compiler api</br>Just send code in raw_body</br>Solidity Version:0.8.4+commit.c7e474f2.Emscripten.clang");
+		
+	}
+	
 	var code = req.body.toString();
 	code = code.split("\r\n").join("");
 	code = code.split("\t").join("");
@@ -54,34 +59,8 @@ app.use("/", (req,res)=>{
 	var bytecode = end["evm"]["bytecode"]["object"];
 	var to_send =[abi,bytecode];
 	res.send(to_send);
-	
-//	var to_compile_start ='{"language":"Solidity","sources":{"sol.sol":{"content":"';
-//	var to_compile_end = '"}},"settings":{"outputSelection":{"*":{"*":["*"]}}}}';
-//	var to_compile=to_compile_start+code+to_compile_end;
-//	res.send(to_compile);
 
-	//var output = JSON.parse(solc.compile(to_compile));
-	//res.send(JSON.stringify(output.contracts['sol.sol']));
 });
-
-/*app.use("/compile_and_get_metadata", (req,res)=>{
-	var code = req.body.toString();
-	code = code.replaceAll("\\","\\\\");
-	code = code.replaceAll("\"","\\\"");
-	
-	
-	var to_compile_start ='{"language":"Solidity","sources":{"sol.sol":{"content":"';
-	var to_compile_end = '"}},"settings":{"outputSelection":{"*":{"*":["*"]}}}}';
-	var to_compile=to_compile_start+code+to_compile_end;
-	
-	var output = JSON.parse(solc.compile(to_compile));
-	res.send(JSON.stringify(output.contracts['sol.sol']));
-	//res.send(req.body);
-	
-	
-	
-	
-});*/
 
 
 
